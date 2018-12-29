@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+				<style type="text/css">
+			* {
+				margin: 0px;
+				font-family: 华文行楷;
+				font-size: 1rem;
+			}
+			body {
+				width: 100%;
+				height: 100vh;
+			}
+			.header {
+				width: 100%;
+				height: 12%;
+				background-color: aliceblue;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+			
+			.base {
+				width: 100%;
+				height: 80%;
+				display: flex;
+				flex-flow: wrap;
+				background-color: azure;
+				justify-content: center;
+				align-items: center;
+			}
+			.footer {
+				width: 100%;
+				height: 8%;
+				background-color: aquamarine;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+			.loginview{
+			    width: 50%;
+			    height: 40%;
+			    display: flex;
+			    flex-direction: column;
+			    justify-content: center;
+			    align-items: center;					
+		    }
+		    .cell{
+			    width: 30%;
+			    height: 40%;
+			    border: 1px  solid  #00FFFF;
+			    margin: 5px;
+			    display: flex;
+			    justify-content: center;
+			    align-items: center;
+		    }
+		    .cell1{
+		    width:60%;
+		    height:60%;
+		    }
+		    input{
+			    text-align: center;
+			    width:100%;
+			    height:100%;
+		    }
+			.footer {
+				width: 100%;
+				height: 8%;
+				background-color: aquamarine;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="header">
+			编程语言介绍
+		</div>
+		
+		<div class="base">
+			
+		   
+	     </div>
+
+		<div class="footer">
+			狼火科技有限公司
+		</div>
+	</body>
+	<script type="text/javascript">
+  var  baseObj= document.getElementsByClassName("base")[0];
+function UrlSearch()
+{
+	
+	//decodeURI location.search-->?之后的参数
+	var url =decodeURI(location.search);
+	alert(url);
+	
+	var  str=url.substr(url.indexOf("=")+1);
+    alert(str);
+    
+    //字符串转换成json
+    var datas=JSON.parse(str);
+    
+    alert(datas.length);
+    
+    datas.forEach(function(value,index){
+	
+	    //alert(value["kname"]);
+	   var  divObj= document.createElement("div");
+	   divObj.className="cell";
+	   divObj.setAttribute("onclick","forward('"+value["yemian"]+"')")
+	   divObj.innerText=value["kname"];
+	   baseObj.appendChild(divObj);
+	   
+	   
+	   alert(value["tupian"]);
+	   var imgObj=document.createElement("img");
+	   imgObj.className="cell1";
+	   imgObj.setAttribute("src",value["tupian"]);
+	   
+	   
+	   divObj.appendChild(imgObj);
+
+	   
+    });
+    
+	
+}
+UrlSearch();
+
+function forward(id)
+{
+	
+    window.location.href=id;
+	
+}
+</script>
+</html>

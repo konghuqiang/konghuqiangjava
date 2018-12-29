@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0px;
+			}
+			
+			.base {
+				width: 100%;
+				height: 100vh;
+			}
+			
+			.top {
+				width: 100%;
+				height: 12%;
+				background-image: url("img/a.jpeg");
+				display: flex;				 
+				align-items: center;
+				justify-content: center;
+				color: yellow;
+			}
+			
+			.main {
+				width: 100%;
+				height: 76%;
+				background-image: url("img/a.jpeg");
+			}
+			
+			.bottom {
+				width: 100%;
+				height: 12%;
+				display: flex;
+				
+				
+			}
+			
+			.cell {
+				width: 25%;
+				height: 100%;
+				 display: flex;
+				 flex-direction: column;
+				 align-items: center;
+				 justify-content: center;
+				
+			}
+			.cell1{
+				width: 100%;
+				height: 100%;
+				background-image: url("img/a.jpeg");
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				color: yellow;
+			}
+			.cell2{
+				width: 100%;
+				height: 100%;
+				background-image: url("img/a.jpeg");
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				color: yellow;
+			}
+			.cell3{
+				width: 100%;
+				height: 100%;
+				background-image: url("img/a.jpeg");
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				color: yellow;
+			}
+			.cell4{
+				width: 100%;
+				height: 100%;
+				background-image: url("img/a.jpeg");
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				color: yellow;
+			}
+			.main  .show
+			{
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				color: yellow;
+			}
+			.main>div{
+				display: none;
+			}
+			
+		</style>
+	</head>
+
+	<body>
+		<div class="base">
+			<div class="top">
+                 实训中心
+			</div>
+			<div class="main">
+                <div class="show"></div>
+                <div>这是系统服务</div>
+                <div>这是案例介绍</div>
+                <div>这是我的情况</div>
+			</div>
+			<div class="bottom">
+				<div class="cell">
+					<div class="cell1">
+					           首页
+					</div>  
+				</div>
+				<div class="cell">
+					<div class="cell2">
+					           服务
+					</div> 
+				</div>
+				<div class="cell">
+					<div class="cell3">
+					           案例
+					</div>
+				</div>
+				<div class="cell">
+					<div class="cell4">
+					           我的
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+<script  type="text/javascript">
+	
+	//获取每个底部单元格
+	var cellObjs=document.getElementsByClassName("cell");
+	//获取所有的div
+	
+	var  mainObj=document.getElementsByClassName("main")[0];
+	
+	var  divObj=mainObj.getElementsByTagName("div");
+	
+	
+	for(var i=0;i<cellObjs.length;i++)
+	{
+		cellObjs[i].inn=i;
+		
+		cellObjs[i].onmouseover=function()
+		{
+			this.style.backgroundColor="#ca98fd";
+			
+			for(var j=0;j<cellObjs.length;j++)
+			{
+				divObj[j].className="";	
+			}
+			console.log(i);
+			console.log(divObj[this.inn]);
+			divObj[this.inn].className="show";
+			
+		}
+			cellObjs[i].onmouseout=function()
+		{
+			this.style.backgroundColor="#95B8E7";
+		}
+		
+	}
+</script>
+<script type="text/javascript">
+  var  baseObj= document.getElementsByClassName("base")[0];
+function UrlSearch()
+{
+	
+	//decodeURI location.search-->?之后的参数
+	var url =decodeURI(location.search);
+	alert(url);
+	
+	var  str=url.substr(url.indexOf("=")+1);
+    alert(str);
+    
+    //字符串转换成json
+    var datas=JSON.parse(str);
+    
+    alert(datas.length);
+    
+    datas.forEach(function(value,index){
+	
+	    //alert(value["tname"]);
+	   var  divObj= document.createElement("div");
+	   divObj.className="cell";
+	   divObj.setAttribute("onclick","forward('"+value["turl"]+"')")
+	   divObj.innerText=value["tname"];
+	   baseObj.appendChild(divObj);
+	   alert(value["imgpath"]);
+	   var imgObj=document.createElement("img");
+	   imgObj.setAttribute("src",value["imgpath"]);
+	   divObj.appendChild(imgObj);
+
+	   
+    });
+    
+	
+}
+UrlSearch();
+
+function forward(id)
+{
+	
+    window.location.href=id;
+	
+}
+</script>
+</html>
